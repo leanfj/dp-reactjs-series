@@ -1,7 +1,32 @@
 import React, { Component } from "react";
 
+//Components
+import api from "../Api";
+
+const statusSeries = {
+  watched: "Assitido",
+  watching: "Assitindo",
+  toWatch: "Assitir"
+};
+
 class Series extends Component {
-  renderSeries() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false,
+      series: []
+    };
+  }
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    api.loadSeriesByGenre(this.props.match.params.genre).then(res => {
+      this.setState({
+        isLoading: false,
+        series: res.data
+      });
+    });
+  }
+  renderSeries(series) {
     return (
       <div className="item  col-xs-4 col-lg-4">
         <div className="thumbnail">
@@ -12,11 +37,13 @@ class Series extends Component {
           />
           <div className="caption">
             <h4 className="group inner list-group-item-heading">
-              How I met your mother
+              {series.name}
             </h4>
             <div className="row">
               <div className="col-md-12">
-                <p className="lead">AÇÃO</p>
+                <p className="lead">
+                  {series.genre} / {statusSeries[series.status]}
+                </p>
               </div>
               <div className="col-md-12">
                 <a className="btn btn-success" href="">
@@ -38,7 +65,9 @@ class Series extends Component {
             <div className="col-md-12">
               <h1>Séries {this.props.match.params.genre}</h1>
               <div id="series" className="row list-group">
-                {this.renderSeries()}
+                {/* Carregando lista de Series */}
+                {!this.state.isLoading &&
+                  this.state.series.map(this.renderSeries)}
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ import api from "../Api";
 const statusSeries = {
   watched: "Assitido",
   watching: "Assitindo",
-  toWatched: "Assitir"
+  toWatch: "Assitir"
 };
 
 class NovaSerie extends Component {
@@ -40,10 +40,10 @@ class NovaSerie extends Component {
   salvarSerie() {
     // Objeto que com a utilização do ref vai pegar todos os values
     const novaSerie = {
-      nome: this.refs.nome.value,
+      name: this.refs.nome.value,
       status: this.refs.status.value,
-      genero: this.refs.genero.value,
-      comentario: this.refs.comentario.value
+      genre: this.refs.genero.value,
+      comments: this.refs.comentario.value
     };
     api.salvaSerie(novaSerie).then(res => console.log(res));
     console.log(novaSerie);
