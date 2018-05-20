@@ -11,6 +11,10 @@ import Series from "./components/Series";
 const Sobre = () => (
   <div className="intro-section">
     <h1>Sobre</h1>
+    <p>
+      Atividade sendo realiza junto ao mini-curso de introdução ao React do{" "}
+      <a href="https://www.devpleno.com/">Dev-Pleno do Tulio Faria</a>
+    </p>
   </div>
 );
 
