@@ -59,6 +59,13 @@
       "genre": "Drama",
       "comments": "Muito boa",
       "id": 8
+    },
+    {
+      "name": "The 100",
+      "status": "watched",
+      "genre": "Ação",
+      "comments": "Série Muito boa",
+      "id": 9
     }
   ],
   "genres": [
