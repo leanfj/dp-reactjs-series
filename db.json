@@ -38,6 +38,27 @@
       "genre": "Ação",
       "comments": "ddddddddddddddd",
       "id": 5
+    },
+    {
+      "name": "Troia",
+      "status": "watching",
+      "genre": "Ação",
+      "comments": "Muito devagar",
+      "id": 6
+    },
+    {
+      "name": "Perdidos no Espaço",
+      "status": "watched",
+      "genre": "Ação",
+      "comments": "Muito boa",
+      "id": 7
+    },
+    {
+      "name": "Strange things",
+      "status": "toWatch",
+      "genre": "Drama",
+      "comments": "Muito boa",
+      "id": 8
     }
   ],
   "genres": [

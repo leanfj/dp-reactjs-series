@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../Api";
+import { Redirect } from "react-router-dom";
 
 const statusSeries = {
   watched: "Assitido",
@@ -16,7 +17,8 @@ class NovaSerie extends Component {
     super(props);
     this.state = {
       genres: [],
-      isLoadin: false
+      isLoadin: false,
+      redirect: false
     };
 
     // Utilização do bind para referenciar o this para dentro do metodo salvarSerie
@@ -45,13 +47,19 @@ class NovaSerie extends Component {
       genre: this.refs.genero.value,
       comments: this.refs.comentario.value
     };
-    api.salvaSerie(novaSerie).then(res => console.log(res));
+    api.salvaSerie(novaSerie).then(res => {
+      this.setState({
+        redirect: "/series/" + this.refs.genero.value
+      });
+      console.log(res);
+    });
     console.log(novaSerie);
   }
 
   render() {
     return (
       <section className="intro-section">
+        {this.state.redirect && <Redirect to={this.state.redirect} />}
         <h1>Nova Série</h1>
         <div className="container">
           <form>
