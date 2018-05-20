@@ -12,8 +12,12 @@ const Sobre = () => (
   <div className="intro-section">
     <h1>Sobre</h1>
     <p>
-      Atividade sendo realiza junto ao mini-curso de introdução ao React do{" "}
+      Atividade sendo realiza junto ao Minicurso de ReactJS do{" "}
       <a href="https://www.devpleno.com/">Dev-Pleno do Tulio Faria</a>
+    </p>
+    <p>
+      App Web para gerenciar as suas séries favoritas da Netflix utilizando o
+      ReactJS.
     </p>
   </div>
 );
