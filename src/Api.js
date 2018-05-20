@@ -7,6 +7,7 @@ const api = axios.create({
 
 export const loadGenres = () => api.get("genres");
 export const salvaSerie = novaSerie => api.post("series", novaSerie);
+export const loadSeriesByGenre = genre => api.get("series?genre=" + genre);
 
 //Metodos para utilização de Verbos http
 const apis = {
