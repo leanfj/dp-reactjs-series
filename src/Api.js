@@ -8,12 +8,14 @@ const api = axios.create({
 export const loadGenres = () => api.get("genres");
 export const salvaSerie = novaSerie => api.post("series", novaSerie);
 export const loadSeriesByGenre = genre => api.get("series?genre=" + genre);
+export const deleteSeries = id => api.delete("series/" + id);
 
 //Metodos para utilização de Verbos http
 const apis = {
   loadGenres,
   salvaSerie,
-  loadSeriesByGenre
+  loadSeriesByGenre,
+  deleteSeries
 };
 
 export default apis;

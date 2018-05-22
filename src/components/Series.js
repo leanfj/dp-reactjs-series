@@ -16,19 +16,43 @@ class Series extends Component {
       isLoading: false,
       series: []
     };
+    this.renderSeries = this.renderSeries.bind(this);
+    this.loadData = this.loadData.bind(this);
   }
   componentDidMount() {
+    // this.setState({ isLoading: true });
+    // api.loadSeriesByGenre(this.props.match.params.genre).then(res => {
+    //   this.setState({
+    //     isLoading: false,
+    //     series: res.data
+    //   });
+    // });
+    this.loadData();
+  }
+
+  loadData() {
     this.setState({ isLoading: true });
     api.loadSeriesByGenre(this.props.match.params.genre).then(res => {
-      this.setState({
-        isLoading: false,
-        series: res.data
-      });
+      this.setState({ isLoading: false, series: res.data });
     });
   }
+
+  deleteSeries(argId) {
+    console.log(argId);
+    api.deleteSeries(argId).then(res => {
+      this.loadData();
+      console.log(res);
+    });
+  }
+
   renderSeries(series) {
+    const estilo = {
+      btn: {
+        marginRight: 10
+      }
+    };
     return (
-      <div className="item  col-xs-4 col-lg-4">
+      <div className="item col-sm-6 col-md-4">
         <div className="thumbnail">
           <img
             className="group list-group-image"
@@ -46,8 +70,14 @@ class Series extends Component {
                 </p>
               </div>
               <div className="col-md-12">
-                <a className="btn btn-success" href="">
-                  Gerenciar
+                <a style={estilo.btn} className="btn btn-success">
+                  Editar
+                </a>
+                <a
+                  className="btn btn-danger"
+                  onClick={() => this.deleteSeries(series.id)}
+                >
+                  Excluir
                 </a>
               </div>
             </div>
