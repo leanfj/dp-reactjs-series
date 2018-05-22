@@ -1,13 +1,6 @@
 {
   "series": [
     {
-      "id": 1,
-      "name": "How I met your mother",
-      "status": "watched",
-      "genre": "Comédia",
-      "comments": "Muito bom"
-    },
-    {
       "id": 3,
       "name": "Breaking Bad",
       "status": "watched",

@@ -94,6 +94,19 @@ class Series extends Component {
           <div className="row">
             <div className="col-md-12">
               <h1>Séries {this.props.match.params.genre}</h1>
+
+              {this.state.isLoading && (
+                <div className="alert alert-info" role="alert">
+                  Carregando
+                </div>
+              )}
+
+              {!this.state.isLoading &&
+                this.state.series.length === 0 && (
+                  <div className="alert alert-warning" role="alert">
+                    Nenhuma Série cadastrada
+                  </div>
+                )}
               <div id="series" className="row list-group">
                 {/* Carregando lista de Series */}
                 {!this.state.isLoading &&
