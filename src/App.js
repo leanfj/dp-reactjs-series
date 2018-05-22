@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 //Components
 import Home from "./components/Home";
 import NovaSerie from "./components/NovaSerie";
+import EditarSerie from "./components/EditarSerie";
 import Series from "./components/Series";
 
 //Functional stateless component
@@ -58,6 +59,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/series/:genre" component={Series} />
           <Route exact path="/nova-serie" component={NovaSerie} />
+          <Route exact path="/editar-serie/:id" component={EditarSerie} />
           <Route exact path="/sobre" component={Sobre} />
         </div>
       </Router>

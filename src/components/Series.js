@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 //Components
 import api from "../Api";
@@ -52,7 +53,7 @@ class Series extends Component {
       }
     };
     return (
-      <div className="item col-sm-6 col-md-4">
+      <div key={series.id} className="item col-sm-6 col-md-4">
         <div className="thumbnail">
           <img
             className="group list-group-image"
@@ -70,9 +71,13 @@ class Series extends Component {
                 </p>
               </div>
               <div className="col-md-12">
-                <a style={estilo.btn} className="btn btn-success">
+                <Link
+                  style={estilo.btn}
+                  className="btn btn-success"
+                  to={"/editar-serie/" + series.id}
+                >
                   Editar
-                </a>
+                </Link>
                 <a
                   className="btn btn-danger"
                   onClick={() => this.deleteSeries(series.id)}

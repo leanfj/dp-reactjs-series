@@ -8,11 +8,11 @@
       "comments": "Say My Name - melhor cena"
     },
     {
-      "name": "The 100",
-      "status": "watched",
+      "id": 5,
+      "name": "The 10012",
+      "status": "toWatch",
       "genre": "Ação",
-      "comments": "ddddddddddddddd",
-      "id": 5
+      "comments": "dddd"
     }
   ],
   "genres": [
