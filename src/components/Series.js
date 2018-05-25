@@ -69,7 +69,6 @@ class Series extends Component {
             <h4 className="group inner list-group-item-heading">
               {series.name}
             </h4>
-            <h4 className="group inner list-group-item-heading">{series.id}</h4>
             <div className="row">
               <div className="col-md-12">
                 <p className="lead">
@@ -80,7 +79,7 @@ class Series extends Component {
                 <Link
                   style={estilo.btn}
                   className="btn btn-success"
-                  to={'/editar-serie/' + series.id}
+                  to={'/editar-serie/' + series.key}
                 >
                   Editar
                 </Link>

@@ -1,10 +1,12 @@
 //axios para fazer requisições http
-import axios from 'axios';
+// import axios from 'axios';
+
+// Conexão com banco FIREBASE
 import base from './connectFirebase';
 
-const api = axios.create({
-  baseURL: 'http://localhost:3001'
-});
+// const api = axios.create({
+//   baseURL: 'http://localhost:3001'
+// });
 
 // export const loadGenres = () => api.get('genres');
 export const loadGenres = () =>
