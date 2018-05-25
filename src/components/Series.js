@@ -58,7 +58,7 @@ class Series extends Component {
       }
     };
     return (
-      <div key={series.id} className="item col-sm-6 col-md-4">
+      <div key={series.key} className="item col-sm-6 col-md-4">
         <div className="thumbnail">
           <img
             className="group list-group-image"
