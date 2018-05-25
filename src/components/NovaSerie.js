@@ -48,9 +48,7 @@ class NovaSerie extends Component {
       comments: this.refs.comentario.value
     };
     api.salvaSerie(novaSerie).then(res => {
-      this.setState({
-        redirect: '/series/' + this.refs.genero.value
-      });
+      this.setState({ redirect: '/series/' + this.refs.genero.value });
       console.log(res.key);
     });
     console.log(novaSerie);

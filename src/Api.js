@@ -2,9 +2,6 @@
 import axios from 'axios';
 import base from './connectFirebase';
 
-const firebase = require('firebase/app');
-const database = require('firebase/database');
-
 const api = axios.create({
   baseURL: 'http://localhost:3001'
 });

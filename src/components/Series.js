@@ -36,16 +36,18 @@ class Series extends Component {
     this.setState({ isLoading: true });
     api.loadSeriesByGenre(this.props.match.params.genre).then(data => {
       this.setState({ isLoading: false, series: data });
-      console.log(data);
     });
   }
 
-  deleteSeries(argName) {
+  deleteSeries(argKey) {
     // api.deleteSeries(argId).then(data => {
     //   this.loadData();
     // });
-    api.deleteSeries(argName).then(data => {
-      console.log(this.state.series);
+    api.deleteSeries(argKey).then(data => {
+      // argKey = res.key;
+      // console.log(this.state.series[0].key);
+      // console.log(argKey);
+      this.loadData();
     });
   }
 
@@ -67,6 +69,7 @@ class Series extends Component {
             <h4 className="group inner list-group-item-heading">
               {series.name}
             </h4>
+            <h4 className="group inner list-group-item-heading">{series.id}</h4>
             <div className="row">
               <div className="col-md-12">
                 <p className="lead">
@@ -83,7 +86,7 @@ class Series extends Component {
                 </Link>
                 <a
                   className="btn btn-danger"
-                  onClick={() => this.deleteSeries(series.name)}
+                  onClick={() => this.deleteSeries(series.key)}
                 >
                   Excluir
                 </a>
