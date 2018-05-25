@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import api from "../Api";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import api from '../Api';
+import { Redirect, Route } from 'react-router-dom';
 
 const statusSeries = {
-  watched: "Assitido",
-  watching: "Assitindo",
-  toWatch: "Assitir"
+  watched: 'Assitido',
+  watching: 'Assitindo',
+  toWatch: 'Assitir'
 };
 
 class NovaSerie extends Component {
@@ -17,7 +17,7 @@ class NovaSerie extends Component {
     super(props);
     this.state = {
       genres: [],
-      isLoadin: false,
+      isLoading: false,
       redirect: false
     };
 
@@ -27,13 +27,13 @@ class NovaSerie extends Component {
   //quando componente esta montado
   componentDidMount() {
     //Define que esta carregando os dados de forma assincorna o then so executa quando finaliza o carregamento
-    this.setState({ isLoadins: true });
-    api.loadGenres().then(res => {
-      console.log(res);
+    this.setState({ isLoading: true });
+    api.loadGenres().then(data => {
+      console.log(data);
       this.setState({
         isLoading: false,
         //carregas os dados recebidos para o array genres
-        genres: res.data
+        genres: data
       });
     });
   }
@@ -49,9 +49,9 @@ class NovaSerie extends Component {
     };
     api.salvaSerie(novaSerie).then(res => {
       this.setState({
-        redirect: "/series/" + this.refs.genero.value
+        redirect: '/series/' + this.refs.genero.value
       });
-      console.log(res);
+      console.log(res.key);
     });
     console.log(novaSerie);
   }

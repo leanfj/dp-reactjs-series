@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 //Components
-import api from "../Api";
+import api from '../Api';
 
 const statusSeries = {
-  watched: "Assitido",
-  watching: "Assitindo",
-  toWatch: "Assitir"
+  watched: 'Assitido',
+  watching: 'Assitindo',
+  toWatch: 'Assitir'
 };
 
 class Series extends Component {
@@ -19,6 +19,7 @@ class Series extends Component {
     };
     this.renderSeries = this.renderSeries.bind(this);
     this.loadData = this.loadData.bind(this);
+    this.deleteSeries = this.deleteSeries.bind(this);
   }
   componentDidMount() {
     // this.setState({ isLoading: true });
@@ -33,16 +34,18 @@ class Series extends Component {
 
   loadData() {
     this.setState({ isLoading: true });
-    api.loadSeriesByGenre(this.props.match.params.genre).then(res => {
-      this.setState({ isLoading: false, series: res.data });
+    api.loadSeriesByGenre(this.props.match.params.genre).then(data => {
+      this.setState({ isLoading: false, series: data });
+      console.log(data);
     });
   }
 
-  deleteSeries(argId) {
-    console.log(argId);
-    api.deleteSeries(argId).then(res => {
-      this.loadData();
-      console.log(res);
+  deleteSeries(argName) {
+    // api.deleteSeries(argId).then(data => {
+    //   this.loadData();
+    // });
+    api.deleteSeries(argName).then(data => {
+      console.log(this.state.series);
     });
   }
 
@@ -74,13 +77,13 @@ class Series extends Component {
                 <Link
                   style={estilo.btn}
                   className="btn btn-success"
-                  to={"/editar-serie/" + series.id}
+                  to={'/editar-serie/' + series.id}
                 >
                   Editar
                 </Link>
                 <a
                   className="btn btn-danger"
-                  onClick={() => this.deleteSeries(series.id)}
+                  onClick={() => this.deleteSeries(series.name)}
                 >
                   Excluir
                 </a>

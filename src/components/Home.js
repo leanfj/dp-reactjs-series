@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 //Components
-import api from "../Api";
+import api from '../Api';
 
 class Home extends Component {
   //life cicle react component?
@@ -13,28 +13,45 @@ class Home extends Component {
     super(props);
     this.state = {
       genres: [],
-      isLoadin: false
+      isLoading: false
     };
   }
   //quando componente esta montado
   componentDidMount() {
     //Define que esta carregando os dados de forma assincorna o then so executa quando finaliza o carregamento
-    this.setState({ isLoadins: true });
-    api.loadGenres().then(res => {
-      console.log(res);
+    this.setState({ isLoading: true });
+    // api.loadGenres().then(data => {
+    //   console.log('From firebase', data);
+    //   // this.setState({
+    //   //   isLoading: false,
+    //   //   //carregas os dados recebidos para o array genres
+    //   //   genres: data.data
+    //   // });
+    //   this.state.genres = data;
+    //   console.log(this.state.genres);
+    // });
+    this.carregaSeries();
+  }
+
+  carregaSeries() {
+    api.loadGenres().then(data => {
+      // this.setState({
+      //   isLoading: false,
+      //   //carregas os dados recebidos para o array genres
+      //   genres: data.data
+      // });
       this.setState({
         isLoading: false,
-        //carregas os dados recebidos para o array genres
-        genres: res.data
+        genres: data
       });
     });
   }
 
   renderGenreLink(genre) {
     const divStyle = {
-      marginRight: "10px",
-      marginTop: "30px",
-      transition: "all .2s"
+      marginRight: '10px',
+      marginTop: '30px',
+      transition: 'all .2s'
     };
     return (
       <Link key={genre} to={`/series/${genre}`}>

@@ -13,6 +13,13 @@
       "status": "toWatch",
       "genre": "Ação",
       "comments": "dddd"
+    },
+    {
+      "name": "The 100",
+      "status": "watching",
+      "genre": "Comédia",
+      "comments": "qqqqqqq",
+      "id": 6
     }
   ],
   "genres": [
