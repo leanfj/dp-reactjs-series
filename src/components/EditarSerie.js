@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import api from "../Api";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import api from '../Api';
+import { Redirect } from 'react-router-dom';
 
 const statusSeries = {
-  watched: "Assitido",
-  watching: "Assitindo",
-  toWatch: "Assitir"
+  watched: 'Assitido',
+  watching: 'Assitindo',
+  toWatch: 'Assitir'
 };
 
 class EditarSerie extends Component {
@@ -29,20 +29,20 @@ class EditarSerie extends Component {
   componentDidMount() {
     //Define que esta carregando os dados de forma assincorna o then so executa quando finaliza o carregamento
     this.setState({ isLoading: true });
-    api.loadGenres().then(res => {
+    api.loadGenres().then(data => {
       this.setState({
         isLoading: false,
         //carregas os dados recebidos para o array genres
-        genres: res.data
+        genres: data
       });
     });
-    api.loadSeriesById(this.props.match.params.id).then(res => {
-      this.setState({ series: res.data });
+    api.loadSeriesById(this.props.match.params.id).then(data => {
+      this.setState({ series: data });
       this.refs.genero.value = this.state.series.genre;
       this.refs.nome.value = this.state.series.name;
       this.refs.status.value = this.state.series.status;
       this.refs.comentario.value = this.state.series.comments;
-      console.log(res.data);
+      console.log(data);
     });
   }
 
@@ -58,7 +58,7 @@ class EditarSerie extends Component {
     };
     api.atualizaSerie(novaSerie).then(res => {
       this.setState({
-        redirect: "/series/" + this.refs.genero.value
+        redirect: '/series/' + this.refs.genero.value
       });
     });
   }
