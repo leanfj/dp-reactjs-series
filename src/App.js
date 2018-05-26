@@ -1,19 +1,20 @@
 //import ES6
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 //Components
-import Home from "./components/Home";
-import NovaSerie from "./components/NovaSerie";
-import EditarSerie from "./components/EditarSerie";
-import Series from "./components/Series";
+import Login from './components/Login';
+import Home from './components/Home';
+import NovaSerie from './components/NovaSerie';
+import EditarSerie from './components/EditarSerie';
+import Series from './components/Series';
 
 //Functional stateless component
 const Sobre = () => (
   <div className="intro-section">
     <h1>Sobre</h1>
     <p>
-      Atividade sendo realiza junto ao Minicurso de ReactJS do{" "}
+      Atividade sendo realiza junto ao Minicurso de ReactJS do{' '}
       <a href="https://www.devpleno.com/">Dev-Pleno do Tulio Faria</a>
     </p>
     <p>
@@ -44,7 +45,7 @@ class App extends Component {
               </div>
               <ul className="nav navbar-nav">
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link to="/home">Home</Link>
                 </li>
                 <li>
                   <Link to="/nova-serie">Nova Série</Link>
@@ -56,7 +57,8 @@ class App extends Component {
             </div>
           </nav>
           {/* Definicação de rotas utilizando react-router-dom */}
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Login} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/series/:genre" component={Series} />
           <Route exact path="/nova-serie" component={NovaSerie} />
           <Route exact path="/editar-serie/:id" component={EditarSerie} />
