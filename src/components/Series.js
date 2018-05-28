@@ -62,7 +62,7 @@ class Series extends Component {
         <div className="thumbnail">
           <img
             className="group list-group-image"
-            src="http://placehold.it/400x250/000/fff"
+            src={series.thumbnail}
             alt=""
           />
           <div className="caption">

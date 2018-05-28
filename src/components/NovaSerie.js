@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import api from '../Api';
+import { storageImg } from '../connectFirebase';
 
 const statusSeries = {
   watched: 'Assitido',
@@ -42,17 +43,41 @@ class NovaSerie extends Component {
   // Metodo para salvar
   salvarSerie() {
     // Objeto que com a utilização do ref vai pegar todos os values
-    const novaSerie = {
-      name: this.refs.nome.value,
-      status: this.refs.status.value,
-      genre: this.refs.genero.value,
-      comments: this.refs.comentario.value
-    };
-    api.salvaSerie(novaSerie).then(res => {
-      this.setState({ redirect: '/series/' + this.refs.genero.value });
-      console.log(res.key);
+    // const novaSerie = {
+    //   name: this.refs.nome.value,
+    //   status: this.refs.status.value,
+    //   genre: this.refs.genero.value,
+    //   comments: this.refs.comentario.value
+    // };
+
+    //Adcionar imagem
+    const arquivo = this.refs.inputImage.files[0];
+    const { name, size, type } = arquivo;
+    const ref = storageImg.ref(name);
+    ref.put(arquivo).then(img => {
+      console.log(img.metadata);
+      img.ref.getDownloadURL().then(downloadURL => {
+        console.log(downloadURL);
+        const novaSerie = {
+          name: this.refs.nome.value,
+          status: this.refs.status.value,
+          genre: this.refs.genero.value,
+          comments: this.refs.comentario.value,
+          thumbnail: downloadURL
+        };
+        api.salvaSerie(novaSerie).then(res => {
+          this.setState({ redirect: '/series/' + this.refs.genero.value });
+          console.log(res.key);
+          console.log(novaSerie);
+        });
+      });
     });
-    console.log(novaSerie);
+
+    // api.salvaSerie(novaSerie).then(res => {
+    //   this.setState({ redirect: '/series/' + this.refs.genero.value });
+    //   console.log(res.key);
+    //   console.log(novaSerie);
+    // });
   }
 
   render() {
@@ -112,13 +137,19 @@ class NovaSerie extends Component {
                 className="form-control"
               />
             </div>
+            <div className="form-group col-md-12">
+              <input type="file" id="inputImage" ref="inputImage" />
+              <p className="help-block text-left">
+                Selecione imagem de thumbnail
+              </p>
+            </div>
             {/* utilização de eventos onClick no button ??? */}
             <button
               onClick={this.salvarSerie}
               type="button"
               className="btn btn-primary"
             >
-              Slavar
+              Salvar
             </button>
           </form>
         </div>

@@ -1,6 +1,7 @@
 const Rebase = require('re-base');
 const firebase = require('firebase/app');
 const database = require('firebase/database');
+const storage = require('firebase/storage');
 
 // Initialize Firebase
 const app = firebase.initializeApp({
@@ -14,5 +15,7 @@ const app = firebase.initializeApp({
 
 const db = firebase.database(app);
 const base = Rebase.createClass(db);
+
+export const storageImg = app.storage();
 
 export default base;
