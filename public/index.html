@@ -30,6 +30,14 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.easing.min.js"></script>
     <script src="/js/scrolling-nav.js"></script>
+    <script>
+        $(function () {
+                var navMain = $("#bs-example-navbar-collapse-1");
+                navMain.on("click", "a", null, function () {
+                    navMain.collapse('hide');
+                });
+            });
+    </script>
 
 </body>
 
