@@ -7,12 +7,20 @@ class Login extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
+    const formStyle = {
+      maxWidth: '320px',
+      margin: '0 auto',
+      borderRadius: '5px',
+      boxShadow: '0px 0px 10px 2px #00000045',
+      padding: '10px'
+    };
     return (
       <section className="intro-section">
         <h1>LOGIN</h1>
         <div className="container">
-          <form>
+          <form style={formStyle}>
             <div className="form-group">
               <label for="exampleInputEmail1">Email</label>
               <input
@@ -31,7 +39,7 @@ class Login extends Component {
                 placeholder="Password"
               />
             </div>
-            <button type="submit" className="btn btn-info">
+            <button type="submit" className="btn btn-primary">
               Login
             </button>
           </form>
