@@ -45,14 +45,14 @@ class Series extends Component {
     // api.deleteSeries(argId).then(data => {
     //   this.loadData();
     // });
+    const storageImgRef = storageImg.ref();
+    storageImgRef.child(img).delete();
     api.deleteSeries(argKey).then(data => {
       // argKey = res.key;
       // console.log(this.state.series[0].key);
       // console.log(argKey);
+      this.loadData();
     });
-    const storageImgRef = storageImg.ref();
-    storageImgRef.child(img).delete();
-    this.loadData();
   }
 
   renderSeries(series) {
