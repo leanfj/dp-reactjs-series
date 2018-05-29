@@ -2,6 +2,7 @@ const Rebase = require('re-base');
 const firebase = require('firebase/app');
 const database = require('firebase/database');
 const storage = require('firebase/storage');
+const auth = require('firebase/auth');
 
 // Initialize Firebase
 const app = firebase.initializeApp({
@@ -17,5 +18,6 @@ const db = firebase.database(app);
 const base = Rebase.createClass(db);
 
 export const storageImg = app.storage();
+export const authUser = app.auth();
 
 export default base;

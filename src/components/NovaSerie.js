@@ -63,7 +63,8 @@ class NovaSerie extends Component {
           status: this.refs.status.value,
           genre: this.refs.genero.value,
           comments: this.refs.comentario.value,
-          thumbnail: downloadURL
+          thumbnail: downloadURL,
+          imagem: img.metadata.fullPath
         };
         api.salvaSerie(novaSerie).then(res => {
           this.setState({ redirect: '/series/' + this.refs.genero.value });

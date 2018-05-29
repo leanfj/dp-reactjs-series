@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 //Components
+import { storageImg } from '../connectFirebase';
 import api from '../Api';
 
 const statusSeries = {
@@ -36,10 +37,11 @@ class Series extends Component {
     this.setState({ isLoading: true });
     api.loadSeriesByGenre(this.props.match.params.genre).then(data => {
       this.setState({ isLoading: false, series: data });
+      console.log(data);
     });
   }
 
-  deleteSeries(argKey) {
+  deleteSeries(argKey, img) {
     // api.deleteSeries(argId).then(data => {
     //   this.loadData();
     // });
@@ -47,8 +49,10 @@ class Series extends Component {
       // argKey = res.key;
       // console.log(this.state.series[0].key);
       // console.log(argKey);
-      this.loadData();
     });
+    const storageImgRef = storageImg.ref();
+    storageImgRef.child(img).delete();
+    this.loadData();
   }
 
   renderSeries(series) {
@@ -85,7 +89,7 @@ class Series extends Component {
                 </Link>
                 <a
                   className="btn btn-danger"
-                  onClick={() => this.deleteSeries(series.key)}
+                  onClick={() => this.deleteSeries(series.key, series.imagem)}
                 >
                   Excluir
                 </a>

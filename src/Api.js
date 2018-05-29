@@ -2,7 +2,7 @@
 // import axios from 'axios';
 
 // Conexão com banco FIREBASE
-import base, { storageImg } from './connectFirebase';
+import base, { storageImg, authUser } from './connectFirebase';
 
 // const api = axios.create({
 //   baseURL: 'http://localhost:3001'
