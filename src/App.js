@@ -1,6 +1,11 @@
 //import ES6
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect
+} from 'react-router-dom';
 
 //Components
 import Login from './components/Login';
@@ -8,6 +13,7 @@ import Home from './components/Home';
 import NovaSerie from './components/NovaSerie';
 import EditarSerie from './components/EditarSerie';
 import Series from './components/Series';
+import { authUser } from './connectFirebase';
 
 //Functional stateless component
 const Sobre = () => (
@@ -32,12 +38,21 @@ const Sobre = () => (
 );
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.logoutUsuario = this.logoutUsuario.bind(this);
+  }
+
+  logoutUsuario() {
+    authUser.signOut().then(user => {
+      console.log('Usuário deslogado', this);
+    });
+  }
   //renderiza na tela
   render() {
     //retorna somente um unico elemento
+    //JSX tags com letras min são identificadas como tag HTML e tags com letras maius. são identificadas como Componentes
     return (
-      /*JSX
-      tags com letras min são identificadas como tag HTML e tags com letras maius. são identificadas como Componentes*/
       <Router>
         <div>
           <nav
@@ -75,6 +90,16 @@ class App extends Component {
                   </li>
                   <li>
                     <Link to="/sobre">Sobre</Link>
+                  </li>
+                </ul>
+                <ul className="nav navbar-nav navbar-right">
+                  <li>
+                    <Link to="/">Login</Link>
+                  </li>
+                  <li>
+                    <Link to="/" onClick={this.logoutUsuario}>
+                      Sair
+                    </Link>
                   </li>
                 </ul>
               </div>
